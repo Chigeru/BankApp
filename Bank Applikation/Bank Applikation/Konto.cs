@@ -9,8 +9,8 @@ namespace Bank_Applikation
     class Konto
     {
         static int bankkontoIncrementor = 2049;
-        int kontoNr;
         public List<Kunde> ejere = new List<Kunde>();
+        int kontoNr { get; set; }
         public double belob { get; set; }
         public string navn { get; set; }
 
@@ -28,17 +28,6 @@ namespace Bank_Applikation
         {
             kunde.AddKonto(this);
 
-        }
-        public void Transfer(double amount)
-        {
-            if (belob >= amount)
-            {
-                belob -= amount;
-            }
-            else
-            {
-                // amount is too high
-            }
         }
 
         public int getKontoNr()
