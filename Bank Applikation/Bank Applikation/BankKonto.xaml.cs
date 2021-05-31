@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace Bank_Applikation
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         List<Kunde> kundeListe;
@@ -38,7 +35,7 @@ namespace Bank_Applikation
             kundeListe.Add(k4);
 
             Konto konto1 = new Konto(k1, 20000.0, "Børne Konto");
-            Konto konto2 = new Konto(k2, 170.0, "");
+            Konto konto2 = new Konto(k2, 170.0);
             Konto konto3 = new Konto(k3, 1500.0, "Personlig");
             Konto konto4 = new Konto(k4, 4000.0, "Budget");
             Konto konto5 = new Konto(k3, 5000.0, "Fælles konto");
@@ -62,6 +59,7 @@ namespace Bank_Applikation
 
         }
 
+        // Rydder og fylder ComboBoxen med kontoer og vælger den første konto deri
         private void CBKundeTest_SelectionChanged(Object sender, SelectionChangedEventArgs e)
         {
             CBKonto.Items.Clear();
@@ -75,6 +73,7 @@ namespace Bank_Applikation
 
         }
 
+        // Tilføjer de ikke-valgte kontoer til ComboBoxen der kan overføres til + opdaterer labelen der viser hvor mange penge der er på den valgte konto
         private void CBKontoTest_SelectionChanged(Object sender, SelectionChangedEventArgs e)
         {
             CBTransfer.Items.Clear();
@@ -90,9 +89,9 @@ namespace Bank_Applikation
                     else lblKontoAmountDisplay.Content = ((Konto)CBKonto.SelectedItem).belob.ToString("N2") + " kr.";
                 }
             }
-
         }
 
+        // Gør ComboBoxen med kontoer der kan overføres til synlig og usynlig alt efter om RadioButton'en "overfør" er valgt eller ej
         private void RBTransaktionsType_Checked(object sender, RoutedEventArgs e)
         {
             RadioButton rb = (RadioButton)sender;
@@ -112,7 +111,7 @@ namespace Bank_Applikation
         {
             if (CBKunde.SelectedItem != null)
             {
-                // Sikre at det er en int eller double der bliver indtastet i beløb feltet
+                // try-catch sikre at det er en int eller double der bliver indtastet i beløb feltet
                 try
                 {
                     int kundeIndex = CBKunde.SelectedIndex;

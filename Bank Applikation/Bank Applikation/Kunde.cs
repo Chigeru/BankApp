@@ -23,16 +23,20 @@ namespace Bank_Applikation
             kontoliste = new List<Konto>();
         }
 
+        // Tilføjer kontoen til listen over kontoer og derefter tilføjer kunden til kontoen
         public void AddKonto(Konto konto)
         {
             kontoliste.Add(konto);
             konto.ejere.Add(this);
         }
 
+        // bliver ikke brugt, men vil kunne blive brugt i fremtidig udvikling
         public String RemoveKonto(Konto konto)
         {
             if (kontoliste.Count == 1 && konto.belob == 0)
             {
+                konto.ejere.Remove(this);
+                kontoliste.Remove(konto);
                 return $"Kontoen blev fjernet fra {this.name}";
             }
             else if (kontoliste.Count == 1 && konto.belob != 0)

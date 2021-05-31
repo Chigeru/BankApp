@@ -8,14 +8,14 @@ namespace Bank_Applikation
 {
     class Konto
     {
-        static int bankkontoIncrementor = 2049;
+        static int bankkontoIncrementor = 200049;       // Vil skulle ændres til datatype long, hvis der skal bruges flere end ca 2,1 millioner kontoer
         public List<Kunde> ejere = new List<Kunde>();
-        int kontoNr { get; set; }
+        public int kontoNr { get; set; }        // Samme som bankkontoIncrementor
         public double belob { get; set; }
         public string navn { get; set; }
 
-
-        public Konto(Kunde kunde, double belob, string navn)
+        
+        public Konto(Kunde kunde, double belob, string navn = "Hoved konto")
         {
             AddKunde(kunde);
             this.belob = belob;
@@ -24,15 +24,12 @@ namespace Bank_Applikation
             bankkontoIncrementor++;
         }
 
+        // der bliver linket til en metode i kunde classen da listen i Kunde classen holder styr på kontoerne, 
+        // og den tilføjer kunderne til listen "ejere" i konto classen
         public void AddKunde(Kunde kunde)
         {
             kunde.AddKonto(this);
 
-        }
-
-        public int getKontoNr()
-        {
-            return kontoNr;
         }
 
         public override string ToString()
